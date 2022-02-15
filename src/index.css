@@ -1,13 +1,439 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100vh;
+  background-color: #101318;
+  font-family: sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+}
+
+.element {
+  min-width: 70px;
+  max-width: 70px;
+  min-height: 70px;
+  max-height: 70px;
+  background-color: transparent;
+  margin: 4px;
+  position: relative;
+  color: white;
+  transition: all 0.2s;
+  transition-property: transform, opacity;
+  text-align: center;
+}
+
+.empty-element {
+  min-width: 70px;
+  max-width: 70px;
+  min-height: 70px;
+  max-height: 70px;
+  background-color: transparent;
+  border: 2px solid transparent;
+  margin: 4px;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.element-number {
+  font-size: 12px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+.element-symbol {
+  font-size: 24px;
+  margin-top: 14px;
+}
+
+.element-name {
+  font-size: 10px;
+}
+
+.element-mass {
+  font-size: 9px;
+}
+
+.element:hover {
+  transform: scale(1.2);
+}
+
+.nonmetal {
+  color: #52ee61;
+  border: 2px solid #52ee61;
+}
+
+.noble-gas {
+  color: #759fff;
+  border: 2px solid #759fff;
+}
+
+.alkali-metal {
+  color: #ecbe59;
+  border: 2px solid #ecbe59;
+}
+
+.alkaline-earth-metal {
+  color: #dee955;
+  border: 2px solid #dee955;
+}
+
+.metalloid {
+  color: #3aefb6;
+  border: 2px solid #3aefb6;
+}
+
+.post-transition-metal {
+  color: #4cddf3;
+  border: 2px solid #4cddf3;
+}
+
+.transition-metal {
+  color: #fd8572;
+  border: 2px solid #fd8572;
+}
+
+.unknown {
+  color: #cccccc;
+  border: 2px solid #cccccc;
+}
+
+.lanthanoid {
+  color: #ec77a3;
+  border: 2px solid #ec77a3;
+}
+
+.aktinoids {
+  color: #c686cc;
+  border: 2px solid #c686cc;
+}
+
+.nonselected {
+  opacity: 0.5;
+}
+.selected {
+  opacity: 1;
+}
+
+.button {
+  background-color: transparent;
+  margin: 12px 24px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.button:hover {
+  transform: scale(1.2);
+}
+
+.modal__wrap {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  min-width: 500px;
+  min-height: 500px;
+  border: 6px solid currentColor;
+  padding: 24px 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #101318;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 6px solid currentColor;
+  padding: 12px;
+}
+
+.modal__header .modal__number {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+.modal__header .modal__symbol {
+  margin-top: 12px;
+  font-size: 48px;
+}
+
+.modal__header .modal__name {
+  font-size: 24px;
+}
+
+.modal__header .modal__category {
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.modal__header .modal__atomic_mass {
+  font-size: 12px;
+}
+
+.modal__wrap a {
+  position: fixed;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  bottom: 12px;
+  transition: all 0.5s;
+  transition-property: color, transform;
+}
+.modal__wrap a:hover {
+  color: currentColor;
+  transform: scale(1.2);
+}
+.modal__body {
+  margin-top: 24px;
+}
+.modal__body table {
+  width: auto;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.modal__body table tr {
+  border-bottom: 1px solid currentColor;
+}
+
+.modal__body table tr:last-child {
+  border: 0;
+}
+
+.modal__body table tr th {
+  white-space: nowrap;
+  padding: 12px 0px;
+}
+
+.modal__body table tr td {
+  padding: 12px 0px;
+}
+/* 
+.modal {
+  transition: opacity 0.2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  min-width: 400px;
+  min-height: 550px;
+  border: 6px solid currentColor;
+  padding: 24px 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #101318;
+  opacity: 1;
+}
+
+.modal__header{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 6px solid currentColor;
+  padding: 12px;
+}
+
+.modal__header .modal__number{
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+
+.modal__header .modal__symbol{
+  margin-top: 12px;
+  font-size: 48px;
+}
+
+.modal__header .modal__name{
+  font-size: 24px;
+}
+
+.modal__header .modal__category{
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.modal__header .modal__atomic_mass{
+  font-size: 12px;
+}
+
+.modal a {
+  position: fixed;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  bottom: 12px;
+  transition: all 0.5s;
+  transition-property: color, transform;
+}
+.modal a:hover {
+  color: currentColor;
+  transform: scale(1.2);
+}
+.modal__body{
+  margin-top: 24px;
+}
+.modal__body table{
+  width: auto;
+  margin: 0 auto;
+}
+.modal__body table tbody tr thead{
+  font-weight: bold;
+}
+.modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: currentColor;
+  cursor: pointer;
+  transition: all 0.2s;
+  transition-property: transform;
+}
+.modal__close:hover {
+  transform: scale(1.2);
+} */
+
+#modal-container {
+  position: fixed;
+  display: table;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 1;
+}
+#modal-container.one {
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modal-container.one .modal-background .modal {
+  transform: scale(0);
+  animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modal-container.one.out {
+  transform: scale(1);
+  animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modal-container.one.out .modal-background .modal {
+  animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container .modal-background {
+  display: table-cell;
+  background: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  vertical-align: middle;
+}
+#modal-container .modal-background .modal {
+  background: white;
+  padding: 50px;
+  display: inline-block;
+  border-radius: 3px;
+  font-weight: 300;
+  position: relative;
+}
+
+.content {
+  min-height: 100%;
+  height: 100%;
+  background: white;
+  position: relative;
+  z-index: 0;
+}
+.content h1 {
+  padding: 75px 0 30px 0;
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+}
+.content .buttons {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+.content .buttons .button {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 15px;
+  margin: 10px;
+  background: red;
+  font-size: 18px;
+  background-color: #efefef;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.content .buttons .button:hover {
+  color: white;
+  background: #009bd5;
+}
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+@keyframes unfoldOut {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+}
+@keyframes zoomIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
